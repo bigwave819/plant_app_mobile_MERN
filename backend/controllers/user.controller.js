@@ -256,18 +256,21 @@ export const linkGoogleAccount = async (req, res) => {
     }
 }
 
-export const getUser = async (_, res) => {
-    try {
-        const users = await User.find().select('-password') // Exclude passwords
+export const getLoggedInUser = async (req, res) => {
+  try {
+    // `req.user` should come from your auth middleware
+    const userId = req.user.id;
 
-        if (users.length === 0) {
-            return res.status(404).json({ message: 'No users found' })
-        }
+    const user = await User.findById(userId).select("-password");
 
-        return res.status(200).json(users)
-    } catch (error) {
-        return res.status(500).json({
-            message: `Server error: ${error.message}`
-        })
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
-}
+
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({
+      message: `Server error: ${error.message}`,
+    });
+  }
+};

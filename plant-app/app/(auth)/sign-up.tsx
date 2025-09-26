@@ -39,7 +39,7 @@ const SignUp = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(`http://10.32.186.76:5000/api/signup`, {
+            const response = await fetch(`http://172.28.134.76:5000/api/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
