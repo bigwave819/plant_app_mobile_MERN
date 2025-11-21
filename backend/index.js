@@ -15,7 +15,6 @@ app.use(express.json())
 
 connectDB()
 
-//root
 app.use('/api', userRoutes)
 app.use('/api', PlantRoutes)
 

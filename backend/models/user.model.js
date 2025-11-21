@@ -13,23 +13,11 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        // Make password optional for Google OAuth users
-        required: function() {
-            return !this.googleId; // Only required if not using Google OAuth
-        }
-    },
-    googleId: {
-        type: String,
-        unique: true,
-        sparse: true // Allows multiple null values
+        required: true
     },
     avatar: {
-        type: String // Store Google profile picture
+        type: String
     },
-    isVerified: {
-        type: Boolean,
-        default: false
-    }
 }, { timestamps: true })
 
 const User = mongoose.model('User', userSchema)
