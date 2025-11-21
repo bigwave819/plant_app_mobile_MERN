@@ -9,6 +9,8 @@ if (!uri) {
   process.exit(1);
 }
 const client = new MongoClient(uri, {
+  tls: true,
+  tlsAllowInvalidCertificates: true, // <-- important for Render
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,

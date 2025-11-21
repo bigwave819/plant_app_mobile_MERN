@@ -1,6 +1,6 @@
 export async function fetchPlants() {
   try {
-    const url = "http://172.28.134.76:5000/api/plants";
+    const url = "https://plant-app-mobile-mern.onrender.com/api/plants";
     console.log(`Fetching from: ${url}`);
     
     const response = await fetch(url);
